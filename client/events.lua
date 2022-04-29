@@ -187,7 +187,7 @@ AddEventHandler('renzu_customs:openinventory', function(current)
             TriggerEvent('renzu_contextmenu:insertmulti',multimenu,"Vehicle Parts",false,"<i class='fad fa-inventory'></i> Mod Inventory")
             TriggerEvent('renzu_contextmenu:show')
         else
-            TriggerEvent('renzu_notify:Notify', 'error','Customs', 'Inventory is Empty')
+            QBCore.Functions.Notify('Inventory is Empty', 'error')
         end
     end,current,activeshare)
 end)
@@ -340,7 +340,7 @@ AddEventHandler('renzu_customs:installmod', function(index,lvl,k,vehicle,mod)
         ClearPedTasks(PlayerPedId())
         TriggerServerEvent('renzu_customs:syncdel',NetworkGetNetworkIdFromEntity(object))
     else
-        TriggerEvent('renzu_notify:Notify', 'error','Garage', 'This Parts is not compatible with this vehicle')
+        QBCore.Functions.Notify('This Parts is not compatible with this vehicle', 'error')
     end
 end)
 
@@ -379,7 +379,7 @@ AddEventHandler('renzu_customs:getmod', function(index,lvl,k)
                 Wait(500)
             end
         else
-            TriggerEvent('renzu_notify:Notify', 'error','Garage', 'This Parts Does not exist')
+            QBCore.Functions.Notify('This Parts Does not exist', 'error')
         end
     end,currentprivate,k,activeshare)
 end)
@@ -463,7 +463,7 @@ AddEventHandler('renzu_customs:vehiclemod', function(vehicle)
             TriggerEvent('renzu_contextmenu:insertmulti',multimenu,"Vehicle Parts",false,"Vehicle Mods")
             TriggerEvent('renzu_contextmenu:show')
         else
-            TriggerEvent('renzu_notify:Notify', 'error','Customs', 'Vehicle is Stock')
+            QBCore.Functions.Notify('Vehicle is Stock', 'error')
         end
     end
 end)

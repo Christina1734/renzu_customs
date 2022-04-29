@@ -3,15 +3,20 @@ lua54 'on'
 game 'gta5'
 ui_page 'html/index.html'
 
+shared_scripts {
+    'config.lua',
+    '@qb-core/shared/locale.lua',
+    'locales/tc.lua' -- Change this to your preferred language
+}
+
 server_scripts {
-	'@mysql-async/lib/MySQL.lua', -- uncomment if ghmatti and oxmysql
-	'config.lua',
+	'@oxmysql/lib/MySQL.lua',
+	--'@mysql-async/lib/MySQL.lua', -- uncomment if ghmatti and oxmysql
 	'framework/sv_wrapper.lua',
 	'server/server.lua'
 }
 
 client_scripts {
-	'config.lua',
 	'framework/cl_wrapper.lua',
 	'client/function.lua',
 	'client/client.lua',

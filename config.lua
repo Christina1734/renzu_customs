@@ -1,12 +1,12 @@
 Config = {}
 Config.Locale = "en"
 -- MAIN CONFIG START
-Config.framework = 'ESX' -- FRAMEWORK! , "ESX", "QBCORE"
-Config.Mysql = 'mysql-async' -- "ghmattisql", "mysql-async", "oxmysql"
+Config.framework = 'QBCORE' -- FRAMEWORK! , "ESX", "QBCORE"
+Config.Mysql = 'oxmysql' -- "ghmattisql", "mysql-async", "oxmysql"
 Config.renzu_vehicleshopTable = false -- will use exports from vehicleshop vehicles table renzu_vehicleshop/vehicles.lua for pricing and other data.
-Config.usePopui = false -- POPUI or Drawmarker Floating Text https://github.com/renzuzu/renzu_popui
+Config.usePopui = true -- POPUI or Drawmarker Floating Text https://github.com/renzuzu/renzu_popui
 Config.showmarker = true -- Drawmarker and FLoating Text
-Config.DisableRepair = false -- Disable Repairing before Showing Upgrade Menu
+Config.DisableRepair = true -- Disable Repairing before Showing Upgrade Menu
 Config.OwnedVehiclesOnly = false -- set this to False if you want to allow modifying of non owned vehicles, AKA local cars, spawned cars
 Config.DoNotShowEmptyMods = false -- hide mod menu if no available mod for current vehicle
 --JOB
@@ -15,12 +15,12 @@ Config.DefaultJobGradePermmission = 0 -- default jobgrade in each job shop (igno
 Config.JobPermissionAll = true -- if this is true only mechanics can access even the upgrade menu (Main Menu)
 --JOB
 Config.InteractiveFeature = { -- Enable Disable All Extra Features like: Inventory, Stock Room, Paint Room
-	['garage_inventory'] = true,
-	['stockroom'] = true,
+	['garage_inventory'] = false,
+	['stockroom'] = false,
 	['paintmenu'] = true,
 }
 --EXTRA OPTION
-Config.PlateSpace = true -- is your plate is ABC 123 format
+Config.PlateSpace = false -- is your plate is ABC 123 format
 Config.VehicleValuetoFormula = false -- if true we will calculate the final cost for each upgrades from the original value from vehicles.table ----- ( IF THIS IS FALSE, the fixed value will be used (var cost from vehicle_mods table))
 Config.VehicleValuePercent = 0.1 -- 0.1 = 10% 0.5 = 50%, 1.0 = 100% (this will be the formula to calculate the total cost for each upgrade)
 Config.VehicleValueList = { -- custom cars that are not exist in vehicles table (vehicles pricing are automatic fetched from DB vehicles table by default)
@@ -46,11 +46,11 @@ Config.PayoutShare = 0.5 -- 0.5 = 50% (how much profit share)
 Config.DefaultProp = 'hei_prop_heist_box' -- default prop when carrying a parts
 
 -- if you want CUSTOM ENGINE UPGRADE ,TURBO and TIRES make sure to true this all
-Config.UseCustomTurboUpgrade = true -- use renzu_custom Turbo System -- enable disable custom turbo upgrade
+Config.UseCustomTurboUpgrade = false -- use renzu_custom Turbo System -- enable disable custom turbo upgrade
 Config.useturbosound = true -- use custom BOV Sound for each turbo
 Config.turbosoundSync = true -- true = Server Sync Sound? or false = only the driver can hear it
 
-Config.UseCustomEngineUpgrade = true -- enable disable custom engine upgrade
+Config.UseCustomEngineUpgrade = false -- enable disable custom engine upgrade
 Config.UseCustomTireUpgrade = true -- enable disable custom tires upgrade
 
 Config.RepairCost = 1500 -- repair cost

@@ -54,22 +54,26 @@ RegisterNUICallback('repair', function(data, cb)
     end
     TriggerServerCallback_("renzu_customs:repair",function(ret)
         if ret then
-            if Config.UseRenzu_progressbar then
-                repair = exports.renzu_progressbar:CreateProgressBar(25,'<i class="fas fa-tools"></i>')
-            end
-            SetVehicleFixed(vehicle)
-            SetVehicleDirtLevel(vehicle,0.0)
-            SetVehicleBodyHealth(vehicle,1000.0)
-            SetVehicleEngineHealth(vehicle,1000.0)
-            SetVehiclePetrolTankHealth(vehicle,1000.0)
-            for k,v in pairs(oldprop) do
-                if k == 'bodyHealth' or k == 'engineHealth' then
-                    oldprop[k] = 1000.0
+            QBCore.Functions.Progressbar("fixing", "正在維修...", 5000, false, true, {
+                disableMovement = false,
+                disableCarMovement = false,
+                disableMouse = false,
+                disableCombat = true,
+            }, {}, {}, {}, function() -- Done
+                SetVehicleFixed(vehicle)
+                SetVehicleDirtLevel(vehicle,0.0)
+                SetVehicleBodyHealth(vehicle,1000.0)
+                SetVehicleEngineHealth(vehicle,1000.0)
+                SetVehiclePetrolTankHealth(vehicle,1000.0)
+                for k,v in pairs(oldprop) do
+                    if k == 'bodyHealth' or k == 'engineHealth' then
+                        oldprop[k] = 1000.0
+                    end
                 end
-            end
-            cb(true)
+                cb(true)
+            end)
         else
-            TriggerEvent('renzu_notify:Notify', 'error','Customs', 'Not enough money cabron $'..Config.RepairCost..' Required')
+            QBCore.Functions.Notify('Not enough money cabron $'..Config.RepairCost..' Required', 'error')
             cb(false)
         end
     end,currentprivate)

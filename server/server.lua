@@ -83,7 +83,7 @@ AddEventHandler('renzu_customs:storemod', function(id,mod,lvl,newprop,share,save
         ['@inventory'] = json.encode(inventory),
         ['@shop'] = id,
     })
-    TriggerClientEvent('renzu_notify:Notify', src, 'success','Garage', 'You Successfully store the parts ('..mod.name..')')
+    TriggerClientEvent('QBCore:Notify', src, 'You Successfully store the parts ('..mod.name..')', 'success')
 end)
 
 local default_routing = {}
@@ -131,7 +131,7 @@ RegisterServerCallBack_('renzu_customs:pay', function (source, cb, t, shop, vcla
             elseif Config.JobPermissionAll and not Config.UseRenzu_jobs then -- job owned without renzu_jobs
                 xPlayer.removeMoney(cost) -- replace it with your job money
             end
-            TriggerClientEvent('renzu_notify:Notify', src, 'success','Customs', 'Payment Success - Upgrade has been Installed')
+            TriggerClientEvent('QBCore:Notify', src, 'Payment Success - Upgrade has been Installed', 'success')
             if Config.UseRenzu_jobs and not Config.JobPermissionAll then
                 addmoney = exports.renzu_jobs:addMoney(tonumber(t.cost),Config.Customs[shop].job,source,'money',true)
             elseif Config.UseRenzu_jobs and Config.JobPermissionAll and Config.Customs[shop].job == xPlayer.job.name then
@@ -150,18 +150,18 @@ RegisterServerCallBack_('renzu_customs:pay', function (source, cb, t, shop, vcla
                 elseif Config.UseRenzu_jobs and Config.JobPermissionAll and Config.Customs[shop].job == xPlayer.job.name then
                     removemoney = exports.renzu_jobs:removeMoney(tonumber(t.cost),Config.Customs[shop].job,source,'money',true)
                 end
-                TriggerClientEvent('renzu_notify:Notify', src, 'success','Customs', 'Payment Success - Upgrade has been Installed')
+                TriggerClientEvent('QBCore:Notify', src, 'Payment Success - Upgrade has been Installed', 'success')
                 cb(true)
             else
-                TriggerClientEvent('renzu_notify:Notify', src, 'error','Customs', 'Not Enough Money Cabron')
+                TriggerClientEvent('QBCore:Notify', src, 'Not Enough Money Cabron', 'error')
                 cb(false)
             end
         else
-            TriggerClientEvent('renzu_notify:Notify', src, 'error','Customs', 'Vehicle is not Owned')
+            TriggerClientEvent('QBCore:Notify', src, 'Vehicle is not Owned', 'error')
             cb(false)
         end
     elseif Config.FreeUpgradeToClass[vclass] then
-        TriggerClientEvent('renzu_notify:Notify', src, 'success','Customs', 'FREE Upgrade has been Installed')
+        TriggerClientEvent('QBCore:Notify', src, 'FREE Upgrade has been Installed', 'success')
         local result = CustomsSQL(Config.Mysql,'fetchAll','SELECT * FROM '..vehicletable..' WHERE UPPER(plate) = @plate', {
             ['@plate'] = prop.plate:upper()
         })
@@ -173,7 +173,7 @@ RegisterServerCallBack_('renzu_customs:pay', function (source, cb, t, shop, vcla
         end
         cb(true)
     else
-        TriggerClientEvent('renzu_notify:Notify', src, 'error','Customs', 'Not Enough Money Cabron')
+        TriggerClientEvent('QBCore:Notify', src, 'Not Enough Money Cabron', 'error')
         cb(false)
     end
 end)
